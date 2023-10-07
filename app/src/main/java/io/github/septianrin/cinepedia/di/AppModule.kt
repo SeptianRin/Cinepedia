@@ -15,7 +15,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providesTMDBApiKey(): String{
-        return BuildConfig.BUILD_TYPE
+        return "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NTMzNjQ4OWVlNjNlZTg0MThlNDYxYjQyN2FjZTBjZSIsInN1YiI6IjYwYjRlYmNjZGQ5MjZhMDA2ZDg5NjEzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lCeAYgoYtXG-Z6yTqJPXa6EzrxwSr_NOtKOQE12ON8k"
     }
 
 }
