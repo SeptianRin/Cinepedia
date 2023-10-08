@@ -57,5 +57,7 @@ data class MovieInfo(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    @SerializedName("credits")
+    val credits: Credits
 )

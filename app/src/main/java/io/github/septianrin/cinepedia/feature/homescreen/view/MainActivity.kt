@@ -13,7 +13,7 @@ import io.github.septianrin.cinepedia.feature.homescreen.models.Movie
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), OnMovieClickListener {
+class MainActivity : AppCompatActivity() {
 
 
     private val binding: ActivityMainBinding by lazy {
@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
 
         homescreenViewModel.loadDiscoverMoviesByPopular(apiKey, applicationContext)
         homescreenViewModel.moviesLiveData.observe(this) { listMovies ->
-            Log.e("onCreate: ", "${listMovies.page}")
             gridListMovieAdapter.addData(listMovies.results)
             isLoading = false
         }
@@ -64,9 +63,5 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         })
 
 
-    }
-
-    override fun onMovieClick(movie: Movie) {
-        Log.e( "onMovieClick: ", movie.title)
     }
 }

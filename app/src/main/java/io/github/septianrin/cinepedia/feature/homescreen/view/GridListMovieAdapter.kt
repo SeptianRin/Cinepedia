@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.septianrin.cinepedia.R
+import io.github.septianrin.cinepedia.Utils
 import io.github.septianrin.cinepedia.databinding.MovieListItemBinding
 import io.github.septianrin.cinepedia.feature.detailscreen.view.MovieInfoActivity
 import io.github.septianrin.cinepedia.feature.homescreen.models.Movie
@@ -18,11 +19,6 @@ class GridListMovieAdapter(
     RecyclerView.Adapter<GridListMovieAdapter.ViewHolder>() {
 
     private var data: MutableList<Movie> = mutableListOf()
-
-//    fun setData(data: List<Movie>) {
-//        this.data = data.toMutableList()
-//        notifyDataSetChanged()
-//    }
 
     fun addData(newData: List<Movie>) {
         data.addAll(newData)
@@ -60,15 +56,11 @@ class GridListMovieAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Movie) {
             Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500/" + item.posterPath)
+                .load(Utils.TMDB_URL_IMAGE + item.posterPath)
                 .placeholder(null)
-                .error(R.drawable.ic_launcher_background)
+                .error(R.drawable.image_not_found)
                 .into(binding.ivPoster)
             binding.tvTitleMovie.text = item.title
         }
     }
-}
-
-interface OnMovieClickListener {
-    fun onMovieClick(movie: Movie)
 }

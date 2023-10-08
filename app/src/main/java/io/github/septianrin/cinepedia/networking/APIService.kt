@@ -16,7 +16,7 @@ interface APIService {
         @Query("page") pages : Int
     ) : Response<ListMovies>
 
-    @GET("movie/{movieId}?append_to_response=videos,reviews")
+    @GET("movie/{movieId}?append_to_response=videos,reviews,credits")
     suspend fun getMovieById(
         @Header("Authorization") apiKey : String,
         @Path("movieId") movieId : String,
