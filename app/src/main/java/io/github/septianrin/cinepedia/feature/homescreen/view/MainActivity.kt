@@ -1,7 +1,6 @@
 package io.github.septianrin.cinepedia.feature.homescreen.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.septianrin.cinepedia.databinding.ActivityMainBinding
 import io.github.septianrin.cinepedia.feature.homescreen.viewmodels.HomescreenViewModel
-import io.github.septianrin.cinepedia.feature.homescreen.models.Movie
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvDiscoverMovies.apply {
             adapter = gridListMovieAdapter
-            layoutManager = GridLayoutManager(this@MainActivity,2)
+            layoutManager = GridLayoutManager(this@MainActivity, 2)
         }
 
 
@@ -57,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 if (!isLoading && (visibleItemCount + firstVisibleItemPosition) >= totalItemCount) {
                     isLoading = true
                     homescreenViewModel.incrementPages()
-                    homescreenViewModel.loadDiscoverMoviesByPopular(apiKey,applicationContext)
+                    homescreenViewModel.loadDiscoverMoviesByPopular(apiKey, applicationContext)
                 }
             }
         })

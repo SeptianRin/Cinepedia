@@ -12,13 +12,13 @@ interface APIService {
 
     @GET("discover/movie")
     suspend fun getPopularMovieList(
-        @Header("Authorization") apiKey : String,
-        @Query("page") pages : Int
-    ) : Response<ListMovies>
+        @Header("Authorization") apiKey: String,
+        @Query("page") pages: Int
+    ): Response<ListMovies>
 
     @GET("movie/{movieId}?append_to_response=videos,reviews,credits")
     suspend fun getMovieById(
-        @Header("Authorization") apiKey : String,
-        @Path("movieId") movieId : String,
-    ) : Response<MovieInfo>
+        @Header("Authorization") apiKey: String,
+        @Path("movieId") movieId: String,
+    ): Response<MovieInfo>
 }

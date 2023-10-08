@@ -3,7 +3,7 @@ package io.github.septianrin.cinepedia.feature.detailscreen.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class Review(
     @SerializedName("author")
     val author: String,
     @SerializedName("author_details")

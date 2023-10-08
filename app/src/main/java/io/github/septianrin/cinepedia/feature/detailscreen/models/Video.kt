@@ -3,7 +3,7 @@ package io.github.septianrin.cinepedia.feature.detailscreen.models
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultX(
+data class Video(
     @SerializedName("id")
     val id: String,
     @SerializedName("iso_3166_1")

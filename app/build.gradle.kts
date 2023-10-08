@@ -9,6 +9,7 @@ android {
     namespace = "io.github.septianrin.cinepedia"
     compileSdk = 33
 
+    android.buildFeatures.buildConfig = true
     defaultConfig {
         applicationId = "io.github.septianrin.cinepedia"
         minSdk = 26
@@ -17,16 +18,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true"
-                )
-            }
-        }
-        android.buildFeatures.buildConfig = true
-        buildConfigField("String", "TMDB_API_KEY", "\"key\"")
+        buildConfigField(
+            "String",
+            "TMDB_TOKEN",
+            "\"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NTMzNjQ4OWVlNjNlZTg0MThlNDYxYjQyN2FjZTBjZSIsInN1YiI6IjYwYjRlYmNjZGQ5MjZhMDA2ZDg5NjEzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lCeAYgoYtXG-Z6yTqJPXa6EzrxwSr_NOtKOQE12ON8k\""
+        )
+
     }
 
     buildTypes {
@@ -51,8 +48,6 @@ android {
 }
 
 dependencies {
-    val room_version = "2.5.2"
-
     //androidx
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -81,12 +76,6 @@ dependencies {
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.48.1")
 
-    //room
-    implementation("androidx.room:room-runtime:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-paging:$room_version")
-    testImplementation("androidx.room:room-testing:$room_version")
-
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -99,18 +88,11 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:ksp:4.16.0")
 
-    //lottie
-    implementation("com.airbnb.android:lottie:5.2.0")
-
-    //mockito
-    testImplementation("org.mockito:mockito-core:3.12.4")
+    //shimmer
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 
     // espresso (UI Test)
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-    // MockWebServer for mocking server responses
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
-
 
 }
 

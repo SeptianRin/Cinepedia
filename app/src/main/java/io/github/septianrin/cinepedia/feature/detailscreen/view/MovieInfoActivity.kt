@@ -1,7 +1,6 @@
 package io.github.septianrin.cinepedia.feature.detailscreen.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.septianrin.cinepedia.R
 import io.github.septianrin.cinepedia.Utils
 import io.github.septianrin.cinepedia.databinding.ActivityMovieInfoBinding
-import io.github.septianrin.cinepedia.feature.detailscreen.viewmodels.CastViewModel
 import io.github.septianrin.cinepedia.feature.detailscreen.viewmodels.MovieInfoViewModel
 import javax.inject.Inject
 
@@ -23,7 +21,6 @@ class MovieInfoActivity : AppCompatActivity() {
     }
 
     private val movieInfoViewModel: MovieInfoViewModel by viewModels()
-    private val castViewModel: CastViewModel by viewModels()
 
     @Inject
     lateinit var apiKey: String
@@ -33,16 +30,17 @@ class MovieInfoActivity : AppCompatActivity() {
         val id = intent.getStringExtra("MOVIE_ID")
         if (id != null) {
             movieInfoViewModel.loadMovieById(apiKey, this, id)
-            movieInfoViewModel.movieInfoLiveData.observe(this) { item->
+            movieInfoViewModel.movieInfoLiveData.observe(this) { item ->
 
-                with(binding){
+                with(binding) {
                     tvTitle.text = item.title
+                    tvReleaseDate.text = item.releaseDate
                     valueRuntime.text = "${item.runtime}\nMinutes"
                     valueRating.text = "${item.voteAverage} / 10"
-                    valueRevenue.text = "$ ${item.revenue}"
+                    valueRevenue.text = "$ ${Utils.getFormatedNumber(item.revenue)}"
                     tvOverview.text = item.overview
                     Glide.with(this@MovieInfoActivity)
-                        .load( Utils.TMDB_URL_IMAGE + item.posterPath)
+                        .load(Utils.TMDB_URL_IMAGE + item.posterPath)
                         .placeholder(null)
                         .error(R.drawable.image_not_found)
                         .into(binding.ivPoster)
@@ -52,10 +50,10 @@ class MovieInfoActivity : AppCompatActivity() {
                         .error(R.drawable.image_not_found)
                         .into(binding.ivBackdrop)
                 }
-                val listFragment : List<Fragment> = listOf(
+                val listFragment: List<Fragment> = listOf(
                     CastFragment(item.credits.cast),
-                    TrailerFragment(),
-                    ReviewFragment()
+                    TrailerFragment(item.videos.results),
+                    ReviewFragment(item.reviews.results)
 
                 )
                 val infoAdapter = MovieInfoViewPager(listFragment, this)

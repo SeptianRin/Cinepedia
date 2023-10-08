@@ -21,7 +21,7 @@ class HomescreenViewModel @Inject constructor(
     val moviesLiveData: MutableLiveData<ListMovies> = MutableLiveData()
     private var pages: Int = 1
 
-    fun incrementPages(){
+    fun incrementPages() {
         pages += 1
     }
 
@@ -35,12 +35,18 @@ class HomescreenViewModel @Inject constructor(
 
                 } else {
                     when (response.code()) {
-                        400 -> Toast.makeText(context, "Bad Request", Toast.LENGTH_SHORT).show()
-                        401 -> Toast.makeText(context, "Unauthorized", Toast.LENGTH_SHORT).show()
-                        500 -> Toast.makeText(context, "Bad Gateway", Toast.LENGTH_SHORT).show()
+                        400 -> Toast.makeText(context, "400 - Bad Request", Toast.LENGTH_SHORT)
+                            .show()
+
+                        401 -> Toast.makeText(context, "401 - Unauthorized", Toast.LENGTH_SHORT)
+                            .show()
+
+                        500 -> Toast.makeText(context, "500 - Bad Gateway", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             } catch (e: Exception) {
+                Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                 Log.e("loadDiscoverMoviesByPopular: ", e.toString())
             }
         }

@@ -1,13 +1,13 @@
 package io.github.septianrin.cinepedia.feature.detailscreen.view.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.septianrin.cinepedia.R
 import io.github.septianrin.cinepedia.Utils
+import io.github.septianrin.cinepedia.Utils.shimmer
 import io.github.septianrin.cinepedia.databinding.CastListItemBinding
 import io.github.septianrin.cinepedia.feature.detailscreen.models.Cast
 
@@ -17,7 +17,6 @@ class GridListCastAdapter(private val context: Context) :
     private var data: MutableList<Cast> = mutableListOf()
 
     fun setData(newData: List<Cast>) {
-        Log.e("setData: ", "$newData" )
         data = newData.toMutableList()
         notifyDataSetChanged()
     }
@@ -45,7 +44,7 @@ class GridListCastAdapter(private val context: Context) :
         fun bind(item: Cast) {
             Glide.with(context)
                 .load(Utils.TMDB_URL_IMAGE + item.profilePath)
-                .placeholder(null)
+                .placeholder(shimmer())
                 .error(R.drawable.image_not_found)
                 .into(binding.ivPoster)
             binding.tvTitleMovie.text = item.name
