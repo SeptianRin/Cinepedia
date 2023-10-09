@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import io.github.septianrin.cinepedia.R
 import io.github.septianrin.cinepedia.Utils
 import io.github.septianrin.cinepedia.Utils.shimmer
-import io.github.septianrin.cinepedia.databinding.CastListItemBinding
+import io.github.septianrin.cinepedia.databinding.ItemCastListBinding
 import io.github.septianrin.cinepedia.feature.detailscreen.models.Cast
 
 class GridListCastAdapter(private val context: Context) :
@@ -25,7 +25,7 @@ class GridListCastAdapter(private val context: Context) :
         parent: ViewGroup,
         viewType: Int
     ): GridListCastAdapter.ViewHolder {
-        val binding = CastListItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemCastListBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -38,7 +38,7 @@ class GridListCastAdapter(private val context: Context) :
         return data.size
     }
 
-    inner class ViewHolder(private val binding: CastListItemBinding) :
+    inner class ViewHolder(private val binding: ItemCastListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Cast) {

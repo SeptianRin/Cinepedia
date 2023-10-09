@@ -2,6 +2,7 @@ package io.github.septianrin.cinepedia.feature.detailscreen.view.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.bumptech.glide.Glide
 import io.github.septianrin.cinepedia.R
 import io.github.septianrin.cinepedia.Utils
 import io.github.septianrin.cinepedia.Utils.shimmer
-import io.github.septianrin.cinepedia.databinding.ReviewListItemBinding
+import io.github.septianrin.cinepedia.databinding.ItemReviewListBinding
 import io.github.septianrin.cinepedia.feature.detailscreen.models.Review
 
 
@@ -28,7 +29,7 @@ class ListReviewAdapter(private val context: Context) :
         parent: ViewGroup,
         viewType: Int
     ): ListReviewAdapter.ViewHolder {
-        val binding = ReviewListItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemReviewListBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -39,7 +40,7 @@ class ListReviewAdapter(private val context: Context) :
 
     override fun getItemCount(): Int = data.size
 
-    inner class ViewHolder(private val binding: ReviewListItemBinding) :
+    inner class ViewHolder(private val binding: ItemReviewListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Review) {

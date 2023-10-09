@@ -2,14 +2,16 @@ package io.github.septianrin.cinepedia.feature.homescreen.view
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.septianrin.cinepedia.R
 import io.github.septianrin.cinepedia.Utils
+import io.github.septianrin.cinepedia.Utils.getOrientation
 import io.github.septianrin.cinepedia.Utils.shimmer
-import io.github.septianrin.cinepedia.databinding.MovieListItemBinding
+import io.github.septianrin.cinepedia.databinding.ItemMovieListBinding
 import io.github.septianrin.cinepedia.feature.detailscreen.view.MovieInfoActivity
 import io.github.septianrin.cinepedia.feature.homescreen.models.Movie
 
@@ -29,7 +31,7 @@ class GridListMovieAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val binding = MovieListItemBinding.inflate(
+        val binding = ItemMovieListBinding.inflate(
             LayoutInflater.from(context),
             parent,
             false
@@ -51,15 +53,28 @@ class GridListMovieAdapter(
         return data.size
     }
 
-    inner class ViewHolder(private val binding: MovieListItemBinding) :
+    inner class ViewHolder(private val binding: ItemMovieListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Movie) {
-            Glide.with(context)
-                .load(Utils.TMDB_URL_IMAGE + item.posterPath)
-                .placeholder(shimmer())
-                .error(R.drawable.image_not_found)
-                .into(binding.ivPoster)
-            binding.tvTitleMovie.text = item.title
+            if(getOrientation(context) == Configuration.ORIENTATION_LANDSCAPE){
+                Glide.with(context)
+                    .load(Utils.TMDB_URL_IMAGE + item.backdropPath)
+                    .placeholder(shimmer())
+                    .error(R.drawable.image_not_found)
+                    .into(binding.ivPoster)
+                binding.tvTitleMovie.apply {
+                    text = item.title
+                    textSize = 20F
+                }
+            } else {
+                Glide.with(context)
+                    .load(Utils.TMDB_URL_IMAGE + item.posterPath)
+                    .placeholder(shimmer())
+                    .error(R.drawable.image_not_found)
+                    .into(binding.ivPoster)
+                binding.tvTitleMovie.text = item.title
+            }
+
         }
     }
 }

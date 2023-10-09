@@ -1,5 +1,6 @@
 package io.github.septianrin.cinepedia
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
@@ -32,6 +33,10 @@ object Utils {
             setShimmer(shimmer)
         }
         return shimmerDrawable
+    }
+
+    fun getOrientation(context: Context): Int {
+        return context.resources.configuration.orientation
     }
 
 }

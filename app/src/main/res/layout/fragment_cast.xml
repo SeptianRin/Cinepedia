@@ -9,15 +9,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCast"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="9"
-        tools:listitem="@layout/cast_list_item"
+        tools:itemCount="23"
+        tools:listitem="@layout/item_cast_list"
         tools:spanCount="3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

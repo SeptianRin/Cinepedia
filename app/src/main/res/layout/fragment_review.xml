@@ -9,14 +9,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvReview"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="4dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="9"
-        tools:listitem="@layout/review_list_item" />
+        tools:listitem="@layout/item_review_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
